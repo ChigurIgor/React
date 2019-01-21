@@ -1,26 +1,55 @@
-import React from 'react';
+import React,{Component} from 'react';
 
-function Article(props){
-    console.log(props);
-    const {article}= props;
-    const {foo}=props;
-    const {flag}=props;
-    let body =        <section>{article.text}</section>;
-    return(
-        <div id="topDiv" className="mainDiv">
+class Article extends Component{
+    state={
+        isOpen: false
+    };
 
-            <h2>{article.title}</h2>
-            <button onClick={handleClick}>close</button>
-            {body}
-            <h3>creation date: {foo} {(new Date(article.date)).toDateString()}{flag}</h3>
-        </div>
-    )
+    render() {
+          console.log(this.props);
+        const {article}= this.props;
+        const {foo}=this.props;
+        const {flag}=this.props;
+        const stile={width:'50%'};
+
+        let body =this.state.isOpen && <section className='card-text'>{article.text}</section>;
+        return(
+            <div  className="card mx-auto" style={stile}>
+                <div className='card-header'>
+                 <h2 >
+                     {article.title}
+                        <button className='btn btn-primary btn-lg float-right' onClick={this.handleClick}>{this.state.isOpen ? "close":"open"}
+                        </button>
+                 </h2>
+                </div>
+                <div className='card-body'>
+               <h6 className='card-subtitle text-muted'>creation date: {foo} {(new Date(article.date)).toDateString()}{flag}</h6>
+                    {body}
+                </div>
+
+            </div>
+        )
+    }
+    handleClick=()=>{
+        console.log("----","clicked");
+        // this.state.isOpen==false &&this.setState({
+        //     isOpen:true
+        // });
+        // this.state.isOpen &&this.setState({
+        //     isOpen:false
+        // });
+        this.setState({
+           isOpen:!this.state.isOpen
+        });
+
+    }
+
+
 }
 
-function handleClick() {
-console.log("----","clicked");
 
-}
+
+
 
 
 export  default Article;
