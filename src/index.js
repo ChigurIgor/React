@@ -1,12 +1,26 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import {render} from 'react-dom';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+function Article(){
+    let body =        <section>body</section>;
+    return(
+        <div id="topDiv" className="mainDiv">
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: http://bit.ly/CRA-PWA
-serviceWorker.unregister();
+            <h2>Title</h2>
+            {body}
+        </div>
+    )
+}
+
+
+function App(){
+    return([
+            <h1 >Title</h1>,
+            <Article/>
+        ]
+    )
+}
+
+
+
+render(<App/>,document.getElementById('root'));
