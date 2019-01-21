@@ -1,9 +1,17 @@
 import React,{Component} from 'react';
 
 class Article extends Component{
-    state={
-        isOpen: false
-    };
+    constructor(props){
+        super(props);
+
+    this.state={
+        isOpen: props.defaultOpen
+    }
+    }
+
+    componentWillMount() {
+        console.log("---","mounting" );
+    }
 
     render() {
           console.log(this.props);
